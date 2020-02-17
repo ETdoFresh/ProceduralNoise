@@ -17,7 +17,7 @@ namespace ETdoFresh.PerlinNoise
             var num1 = Grad(permutation[intPart], floatPart);
             var num2 = Grad(permutation[intPart + 1], inverse);
             var value = Mathf.Lerp(num1, num2, t);
-            return value;
+            return Map(value, -1, 1, 0, 1);
         }
 
         public static float Get(float x, float y, float frequency = 1)
@@ -47,7 +47,14 @@ namespace ETdoFresh.PerlinNoise
             var value2 = Mathf.Lerp(num3, num4, tY);
 
             var value = Mathf.Lerp(value1, value2, tX);
-            return value;
+            return Map(value, -1, 1, 0, 1);
+        }
+
+        private static float Map(float value, float originalMin, float originalMax, float min, float max)
+        {
+            var delta = (value - originalMin) / (originalMax - originalMin);
+            var newDelta = delta * (max - min);
+            return newDelta + min;
         }
 
         private static float Fade(float t)
