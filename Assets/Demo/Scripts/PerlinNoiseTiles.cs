@@ -18,7 +18,7 @@ namespace ETdoFresh.PerlinNoise.Demo
 
             for (int x = 0; x < tilemap.size.x; x++)
                 for (int y = 0; y < tilemap.size.y; y++)
-                    tilemap.SetColor(new Vector3Int(x, y, 0), GetColor(x/200f, y/200f));
+                    tilemap.SetColor(new Vector3Int(x, y, 0), GetColor(x/(float)width, y/(float)height));
         }
 
         public Color GetColor(float x, float y)

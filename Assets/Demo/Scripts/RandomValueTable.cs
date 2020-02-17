@@ -35,4 +35,30 @@
             return output;
         }
     }
+
+    public class PermutationTable
+    {
+        public int Seed { get; private set; }
+        public int Size { get; private set; }
+        public int Max { get; private set; }
+        public float Inverse { get; private set; }
+        public int Wrap;
+        private int[] Table;
+
+        public int this[int i] => Table[i & Wrap] & Max;
+        public int this[int i, int j] => Table[(j + Table[i & Wrap]) & Wrap] & Max;
+        public int this[int i, int j, int k] => Table[(k + Table[(j + Table[i & Wrap]) & Wrap]) & Wrap] & Max;
+
+        public PermutationTable(int seed = 1234, int size = 1024, int max = 255)
+        {
+            Seed = seed;
+            Size = size;
+            Max = max;
+            Inverse = 1f / Max;
+            Table = new int[Size];
+            var randomInt = new System.Random(Seed);
+            for (int i = 0; i < Size; i++)
+                Table[i] = randomInt.Next();
+        }
+    }
 }

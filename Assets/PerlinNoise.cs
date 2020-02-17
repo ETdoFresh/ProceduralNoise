@@ -5,21 +5,29 @@ namespace ETdoFresh.PerlinNoise
     public static class PerlinNoise
     {
         public static RandomValueTable randomValue = new RandomValueTable();
+        public static PermutationTable permutation = new PermutationTable();
 
-        public static float Get(float x)
+        public static float Get(float x, float frequency = 1)
         {
+            x *= frequency;
             var intPart = Mathf.FloorToInt(x);
             var floatPart = x - intPart;
             var inverse = floatPart - 1;
             var t = Fade(floatPart);
-            var num1 = Grad(randomValue[intPart], floatPart);
-            var num2 = Grad(randomValue[intPart + 1], inverse);
+            var num1 = Grad(permutation[intPart], floatPart);
+            var num2 = Grad(permutation[intPart + 1], inverse);
             var value = Mathf.Lerp(num1, num2, t);
             return 0.25f * value;
         }
 
-        public static float Get(float x, float y)
+        public static float Get(float x, float y, float frequency = 1)
         {
+            // TEMP
+            if (x == 0 && y == 0)
+                permutation = new PermutationTable(UnityEngine.Random.Range(int.MinValue, int.MaxValue));
+
+            x *= frequency;
+            y *= frequency;
             var intPartX = Mathf.FloorToInt(x);
             var intPartY = Mathf.FloorToInt(y);
             var floatPartX = x - intPartX;
@@ -30,16 +38,16 @@ namespace ETdoFresh.PerlinNoise
             var tX = Fade(floatPartX);
             var tY = Fade(floatPartY);
 
-            var num1 = Grad(randomValue[intPartX, intPartY], floatPartX, floatPartY);
-            var num2 = Grad(randomValue[intPartX, intPartY + 1], floatPartX, inverseY);
+            var num1 = Grad(permutation[intPartX, intPartY], floatPartX, floatPartY);
+            var num2 = Grad(permutation[intPartX, intPartY + 1], floatPartX, inverseY);
             var value1 = Mathf.Lerp(num1, num2, tX);
 
-            var num3 = Grad(randomValue[intPartX + 1, intPartY], inverseX, floatPartY);
-            var num4 = Grad(randomValue[intPartY + 1, intPartY + 1], inverseX, inverseY);
+            var num3 = Grad(permutation[intPartX + 1, intPartY], inverseX, floatPartY);
+            var num4 = Grad(permutation[intPartX + 1, intPartY + 1], inverseX, inverseY);
             var value2 = Mathf.Lerp(num3, num4, tX);
 
             var value = Mathf.Lerp(value1, value2, tY);
-            return 0.666666f * value;
+            return value;
         }
 
         private static float Fade(float t)
