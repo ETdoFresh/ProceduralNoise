@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ETdoFresh.PerlinNoise
+﻿namespace ETdoFresh.PerlinNoise
 {
     public static class Random
     {

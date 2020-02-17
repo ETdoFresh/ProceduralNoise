@@ -4,7 +4,7 @@ using UnityEngine.Tilemaps;
 namespace ETdoFresh.PerlinNoise.Demo
 {
     [RequireComponent(typeof(Tilemap))]
-    public class RandomTiles : MonoBehaviour
+    public class PerlinNoiseTiles : MonoBehaviour
     {
         public Tilemap tilemap;
         public int width;
@@ -18,12 +18,12 @@ namespace ETdoFresh.PerlinNoise.Demo
 
             for (int x = 0; x < tilemap.size.x; x++)
                 for (int y = 0; y < tilemap.size.y; y++)
-                    tilemap.SetColor(new Vector3Int(x, y, 0), RandomColor());
+                    tilemap.SetColor(new Vector3Int(x, y, 0), GetColor(x/200f, y/200f));
         }
 
-        public Color RandomColor()
+        public Color GetColor(float x, float y)
         {
-            var value = Random.Get();
+            var value = PerlinNoise.Get(x, y);
             return new Color(value, value, value);
         }
     }
