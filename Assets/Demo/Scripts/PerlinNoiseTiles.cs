@@ -23,7 +23,7 @@ namespace ETdoFresh.PerlinNoise.Demo
 
         public Color GetColor(float x, float y)
         {
-            var value = PerlinNoise.Get(x, y);
+            var value = PerlinNoise.Get(x, y, 5) * 2;
             return new Color(value, value, value);
         }
     }

@@ -55,6 +55,7 @@
             Size = size;
             Max = max;
             Inverse = 1f / Max;
+            Wrap = Size - 1;
             Table = new int[Size];
             var randomInt = new System.Random(Seed);
             for (int i = 0; i < Size; i++)
