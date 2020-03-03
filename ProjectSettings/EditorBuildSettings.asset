@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/Scenes/DemoPerlinNoise.unity
     guid: 5f130820465bf7343a2c2703f2958515
+  - enabled: 1
+    path: Assets/SimpleRPGOverworld/Scenes/SimpleRPGOverworld.unity
+    guid: 1c44571c13a32c34f9f551e3e3199512
   m_configObjects: {}
