@@ -7,6 +7,7 @@ public class MinEntropy : MonoBehaviour
 {
     public OutputGrid outputGrid;
     public Entropies entropies;
+    public Entropies.Item minCell;
     public float entropy;
     public int i;
     public int x;
@@ -20,8 +21,8 @@ public class MinEntropy : MonoBehaviour
 
     private void Populate()
     {
-        entropy = entropies.all.Min(e => e.entropy);
-        var minCell = entropies.all.Where(e => e.entropy == entropy).First();
+        entropy = entropies.all.Where(e => e.gridCell.possible.Count > 1).Min(e => e.entropy);
+        minCell = entropies.all.Where(e => e.entropy == entropy).First();
         i = entropies.all.IndexOf(minCell);
         x = i % outputGrid.width;
         y = i / outputGrid.height;

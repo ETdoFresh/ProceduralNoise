@@ -20,11 +20,8 @@ public class Entropies : MonoBehaviour
     private void Populate()
     {
         all.Clear();
-        foreach(var cell in outputGrid.grid)
-        {
-            if (!all.Any(i => cell.possible.SequenceEqual(i.possible)))
-                all.Add(new Item { possible = new List<PatternIds.Item>(cell.possible), entropy = ComputeEntropy(cell.possible) });
-        }
+        foreach (var cell in outputGrid.grid)
+            all.Add(new Item { gridCell = cell, entropy = ComputeEntropy(cell.possible) });
     }
 
     private float ComputeEntropy(List<PatternIds.Item> possible)
@@ -46,7 +43,7 @@ public class Entropies : MonoBehaviour
     [Serializable]
     public class Item
     {
-        public List<PatternIds.Item> possible;
+        public OutputGrid.Item gridCell;
         public float entropy;
     }
 

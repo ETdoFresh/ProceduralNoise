@@ -21,8 +21,6 @@ public class OutputGrid : MonoBehaviour
 
     private void Populate()
     {
-        ClearTilemap(outputTilemap);
-
         var allPatterns = patternIds.all;
 
         grid.Clear();
@@ -32,7 +30,12 @@ public class OutputGrid : MonoBehaviour
             newItem.possible.AddRange(allPatterns);
             grid.Add(newItem);
         }
+        RefreshTiles();
+    }
 
+    public void RefreshTiles()
+    {
+        ClearTilemap(outputTilemap);
         for (int i = 0; i < grid.Count; i++)
             outputTilemap.SetTile(new Vector3Int(i % width, i / width, 0), patternIds.tileIds.all[grid[i].possible.Count].tile);
     }
