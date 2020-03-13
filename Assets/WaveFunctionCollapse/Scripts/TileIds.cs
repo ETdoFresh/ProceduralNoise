@@ -8,9 +8,9 @@ public class TileIds : MonoBehaviour
 {
     public Tilemap inputTilemap;
     public List<Item> all = new List<Item>();
-    public List<Item> grid = new List<Item>();
-    public int gridWidth;
-    public int gridHeight;
+    public Grid<Item> grid = new Grid<Item>();
+    public int width;
+    public int height;
 
     private void OnValidate()
     {
@@ -26,18 +26,21 @@ public class TileIds : MonoBehaviour
             if (!all.Any(existing => existing.tile == tile))
                 all.Add(new Item { id = all.Count, tile = tile });
 
-        grid.Clear();
-        foreach (var tile in inputTilemap.GetTilesBlock(inputTilemap.cellBounds))
-        {
-            var item = all.Where(i => i.tile == tile).First();
-            grid.Add(item);
-        }
+        grid.Reset(width, height);
+        var min = inputTilemap.cellBounds.min;
+        for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
+            {
+                var tile = inputTilemap.GetTile(min + new Vector3Int(x, y, 0));
+                var item = all.Where(i => i.tile == tile).First();
+                grid[x, y].value = item;
+            }
     }
 
     private void RefreshCellBounds()
     {
-        gridWidth = inputTilemap.size.x;
-        gridHeight = inputTilemap.size.y;
+        width = inputTilemap.size.x;
+        height = inputTilemap.size.y;
         var notSet = new Vector3Int(-1, -1, -1);
         var topLeft = notSet;
         var bottomRight = notSet;
@@ -62,8 +65,8 @@ public class TileIds : MonoBehaviour
         cell.min = topLeft;
         cell.max = bottomRight;
         inputTilemap.size = cell.size;
-        gridWidth = cell.size.x;
-        gridHeight = cell.size.y;
+        width = cell.size.x;
+        height = cell.size.y;
     }
 
     [Serializable]
@@ -71,6 +74,8 @@ public class TileIds : MonoBehaviour
     {
         public int id;
         public TileBase tile;
+
+        public override int GetHashCode() => id;
 
         public override bool Equals(object obj)
         {

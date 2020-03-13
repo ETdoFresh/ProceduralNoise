@@ -24,8 +24,8 @@ public class PatternIds : MonoBehaviour
 
         all.Clear();
         var tiles = tileIds.all;
-        for (var y = 0; y < tileIds.gridHeight - (n - 1); y++)
-            for (var x = 0; x < tileIds.gridWidth - (n - 1); x++)
+        for (var y = 0; y < tileIds.height - (n - 1); y++)
+            for (var x = 0; x < tileIds.width - (n - 1); x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
                 if (!all.Any(existing => sequence.SequenceEqual(existing.sequence)))
@@ -33,8 +33,8 @@ public class PatternIds : MonoBehaviour
             }
 
         grid.Clear();
-        for (var y = 0; y < tileIds.gridHeight - (n - 1); y++)
-            for (var x = 0; x < tileIds.gridWidth - (n - 1); x++)
+        for (var y = 0; y < tileIds.height - (n - 1); y++)
+            for (var x = 0; x < tileIds.width - (n - 1); x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
                 var item = all.Where(i => sequence.SequenceEqual(i.sequence)).First();
@@ -42,8 +42,8 @@ public class PatternIds : MonoBehaviour
             }
 
         var cell = patternTilemap.cellBounds;
-        var width = tileIds.gridWidth;
-        var height = tileIds.gridHeight;
+        var width = tileIds.width;
+        var height = tileIds.height;
         cell.min = Vector3Int.zero;
         cell.size = new Vector3Int(width - (n - 1), height - (n - 1), 1);
         patternTilemap.size = cell.size;
@@ -64,11 +64,11 @@ public class PatternIds : MonoBehaviour
     private List<TileIds.Item> GetNSequence(int x, int y)
     {
         var grid = tileIds.grid;
-        var width = tileIds.gridWidth;
+        var width = tileIds.width;
         var sequence = new List<TileIds.Item>();
         for (int nY = 0; nY < n; nY++)
             for (int nX = 0; nX < n; nX++)
-                sequence.Add(grid[x + nX + (y + nY) * width]);
+                sequence.Add(grid[x + nX, y + nY].value);
         return sequence;
     }
 
