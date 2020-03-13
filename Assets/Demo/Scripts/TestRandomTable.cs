@@ -1,13 +1,15 @@
-﻿using ETdoFresh.PerlinNoise;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class TestRandomTable : MonoBehaviour
+namespace Demo.Scripts
 {
-    public RandomValueTable randomValueTable = new RandomValueTable();
-
-    private void OnEnable()
+    public class TestRandomTable : MonoBehaviour
     {
-        randomValueTable = new RandomValueTable();
-        Debug.Log($"Random Value Table: {randomValueTable}");
+        public RandomValueTable randomValueTable = new RandomValueTable();
+
+        private void OnEnable()
+        {
+            randomValueTable = new RandomValueTable();
+            Debug.Log($"Random Value Table: {randomValueTable}");
+        }
     }
 }

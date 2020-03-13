@@ -1,1 +1,4 @@
-﻿public interface IComponentData { }
+﻿namespace SimpleRPGOverworld.Scripts
+{
+    public interface IComponentData { }
+}

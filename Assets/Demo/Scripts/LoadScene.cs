@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadScene : MonoBehaviour
+namespace Demo.Scripts
 {
-    public void Load(int sceneBuildIndex)
+    public class LoadScene : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneBuildIndex);
-    }
+        public void Load(int sceneBuildIndex)
+        {
+            SceneManager.LoadScene(sceneBuildIndex);
+        }
 
-    public void Load(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+        public void Load(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
 
-    public void Reload()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        public void Reload()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 }

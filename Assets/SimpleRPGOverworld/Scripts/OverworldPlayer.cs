@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
-public class OverworldPlayer : MonoBehaviour, IComponentData
+namespace SimpleRPGOverworld.Scripts
 {
+    public class OverworldPlayer : MonoBehaviour, IComponentData
+    {
+    }
 }

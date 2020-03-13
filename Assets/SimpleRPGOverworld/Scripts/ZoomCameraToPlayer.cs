@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 
-public class ZoomCameraToPlayer : MonoBehaviour, ISystem
+namespace SimpleRPGOverworld.Scripts
 {
-    private void Update()
+    public class ZoomCameraToPlayer : MonoBehaviour, ISystem
     {
-        foreach(var cameraEntity in ECS.GetEntities<OverworldCamera>())
-            foreach(var playerEntity in ECS.GetEntities<OverworldPlayer>())
+        private void Update()
+        {
+            foreach(var cameraEntity in Ecs.GetEntities<OverworldCamera>())
+            foreach(var playerEntity in Ecs.GetEntities<OverworldPlayer>())
             {
                 var zoomSpeed = cameraEntity.Item1.zoomSpeed;
                 var cameraPosition = cameraEntity.Item1.transform.position;
@@ -18,5 +20,6 @@ public class ZoomCameraToPlayer : MonoBehaviour, ISystem
                 cameraEntity.Item1.transform.position = Vector3.Lerp(cameraPosition, targetPosition, Time.deltaTime * zoomSpeed);
                 cameraEntity.Item1.camera.orthographicSize = Mathf.Lerp(cameraZoom, targetZoom, Time.deltaTime * zoomSpeed);
             }
+        }
     }
 }

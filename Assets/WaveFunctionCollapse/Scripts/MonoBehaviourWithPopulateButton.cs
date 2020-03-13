@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public abstract class MonoBehaviourWithPopulateButton : MonoBehaviour
+namespace WaveFunctionCollapse.Scripts
 {
-    public abstract void Populate();
+    public abstract class MonoBehaviourWithPopulateButton : MonoBehaviour
+    {
+        public abstract void Populate();
+    }
 }
