@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class CollapseCell : MonoBehaviour
+public class CollapseCell : MonoBehaviourWithPopulateButton
 {
     public MinEntropy minEntropy;
     public RelativeFrequency relativeFrequency;
@@ -16,7 +16,7 @@ public class CollapseCell : MonoBehaviour
         if (!outputGrid) outputGrid = FindObjectOfType<OutputGrid>();
     }
 
-    private void Populate()
+    public override void Populate()
     {
         var cell = minEntropy.minCell;
         var total = 0f;
@@ -41,19 +41,5 @@ public class CollapseCell : MonoBehaviour
         cell.gridCell.possible.Clear();
         cell.gridCell.possible.Add(selection);
         outputGrid.RefreshTiles();
-    }
-
-    [UnityEditor.CustomEditor(typeof(CollapseCell))]
-    public class CollapseCellEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-            if (GUILayout.Button("Populate"))
-                ((CollapseCell)target).Populate();
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-        }
     }
 }

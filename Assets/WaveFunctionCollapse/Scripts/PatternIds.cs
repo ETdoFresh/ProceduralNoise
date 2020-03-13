@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PatternIds : MonoBehaviour
+public class PatternIds : MonoBehaviourWithPopulateButton
 {
     public int n = 1;
     public Tilemap patternTilemap;
@@ -18,7 +18,7 @@ public class PatternIds : MonoBehaviour
         if (!tileIds) tileIds = FindObjectOfType<TileIds>();
     }
 
-    private void Populate()
+    public override void Populate()
     {
         ClearTilemap(patternTilemap);
 
@@ -78,20 +78,5 @@ public class PatternIds : MonoBehaviour
         public int id;
         public List<TileIds.Item> sequence = new List<TileIds.Item>();
         public TileBase tile;
-    }
-
-
-    [UnityEditor.CustomEditor(typeof(PatternIds))]
-    public class PatternIdsEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-            if (GUILayout.Button("Populate"))
-                ((PatternIds)target).Populate();
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-        }
     }
 }

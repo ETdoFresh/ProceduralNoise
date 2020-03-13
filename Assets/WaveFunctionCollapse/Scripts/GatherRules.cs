@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GatherRules : MonoBehaviour
+public class GatherRules : MonoBehaviourWithPopulateButton
 {
     public PatternIds patternIds;
     public List<Item> rules = new List<Item>();
@@ -13,7 +13,7 @@ public class GatherRules : MonoBehaviour
         if (!patternIds) patternIds = FindObjectOfType<PatternIds>();
     }
 
-    private void Populate()
+    public override void Populate()
     {
         rules.Clear();
         foreach(var pattern in patternIds.all)

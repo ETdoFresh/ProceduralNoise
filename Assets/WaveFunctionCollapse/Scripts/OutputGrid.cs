@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class OutputGrid : MonoBehaviour
+public class OutputGrid : MonoBehaviourWithPopulateButton
 {
     public int width = 5;
     public int height = 5;
@@ -19,7 +19,7 @@ public class OutputGrid : MonoBehaviour
         if (!patternIds) patternIds = FindObjectOfType<PatternIds>();
     }
 
-    private void Populate()
+    public  override void Populate()
     {
         var allPatterns = patternIds.all;
 
@@ -53,19 +53,5 @@ public class OutputGrid : MonoBehaviour
     public class Item
     {
         public List<PatternIds.Item> possible = new List<PatternIds.Item>();
-    }
-
-    [UnityEditor.CustomEditor(typeof(OutputGrid))]
-    public class OutputGridEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-            if (GUILayout.Button("Populate"))
-                ((OutputGrid)target).Populate();
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-        }
     }
 }

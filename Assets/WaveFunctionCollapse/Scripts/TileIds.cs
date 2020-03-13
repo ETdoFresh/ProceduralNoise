@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class TileIds : MonoBehaviour
+public class TileIds : MonoBehaviourWithPopulateButton
 {
     public Tilemap inputTilemap;
     public List<Item> all = new List<Item>();
@@ -17,7 +17,7 @@ public class TileIds : MonoBehaviour
         if (!inputTilemap) inputTilemap = FindObjectOfType<Tilemap>();
     }
 
-    private void Populate()
+    public override void Populate()
     {
         RefreshCellBounds();
 
@@ -83,20 +83,6 @@ public class TileIds : MonoBehaviour
                 return other.id == id && other.tile == tile;
             else
                 return false;
-        }
-    }
-
-    [UnityEditor.CustomEditor(typeof(TileIds))]
-    public class TileIdsEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-            if (GUILayout.Button("Populate"))
-                ((TileIds)target).Populate();
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
         }
     }
 }

@@ -501,12 +501,6 @@ MonoBehaviour:
         tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
       tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
   - possible:
-    - id: 3
-      sequence:
-      - id: 1
-        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-      tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-  - possible:
     - id: 0
       sequence:
       - id: 2
@@ -709,6 +703,12 @@ MonoBehaviour:
       - id: 1
         tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
       tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+    - id: 4
+      sequence:
+      - id: 0
+        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+      tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+  - possible:
     - id: 4
       sequence:
       - id: 0
@@ -1181,6 +1181,8 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
   - id: 4
     tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+  - id: 5
+    tile: {fileID: 11400000, guid: 0cd671b6990a33d4299d422f96c84bea, type: 2}
   width: 3
   height: 3
 --- !u!4 &659421256
@@ -1272,7 +1274,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849981
+    entropy: 12.850455
   - gridCell:
       possible:
       - id: 0
@@ -1300,7 +1302,119 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850286
+    entropy: 12.849691
+  - gridCell:
+      possible:
+      - id: 0
+        sequence:
+        - id: 2
+          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+      - id: 1
+        sequence:
+        - id: 3
+          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+      - id: 2
+        sequence:
+        - id: 4
+          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+      - id: 3
+        sequence:
+        - id: 1
+          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+      - id: 4
+        sequence:
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.84967
+  - gridCell:
+      possible:
+      - id: 0
+        sequence:
+        - id: 2
+          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+      - id: 1
+        sequence:
+        - id: 3
+          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+      - id: 2
+        sequence:
+        - id: 4
+          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+      - id: 3
+        sequence:
+        - id: 1
+          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+      - id: 4
+        sequence:
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.849913
+  - gridCell:
+      possible:
+      - id: 0
+        sequence:
+        - id: 2
+          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+      - id: 1
+        sequence:
+        - id: 3
+          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+      - id: 2
+        sequence:
+        - id: 4
+          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+      - id: 3
+        sequence:
+        - id: 1
+          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+      - id: 4
+        sequence:
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.849895
+  - gridCell:
+      possible:
+      - id: 0
+        sequence:
+        - id: 2
+          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+      - id: 1
+        sequence:
+        - id: 3
+          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+      - id: 2
+        sequence:
+        - id: 4
+          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
+      - id: 3
+        sequence:
+        - id: 1
+          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
+        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+      - id: 4
+        sequence:
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.850005
   - gridCell:
       possible:
       - id: 0
@@ -1356,7 +1470,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850251
+    entropy: 12.849977
   - gridCell:
       possible:
       - id: 0
@@ -1384,7 +1498,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.8497
+    entropy: 12.850478
   - gridCell:
       possible:
       - id: 0
@@ -1412,7 +1526,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850609
+    entropy: 12.850572
   - gridCell:
       possible:
       - id: 0
@@ -1440,15 +1554,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.85045
-  - gridCell:
-      possible:
-      - id: 3
-        sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-    entropy: 12.84966
+    entropy: 12.849951
   - gridCell:
       possible:
       - id: 0
@@ -1476,7 +1582,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849799
+    entropy: 12.850399
   - gridCell:
       possible:
       - id: 0
@@ -1504,7 +1610,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849925
+    entropy: 12.850392
   - gridCell:
       possible:
       - id: 0
@@ -1532,7 +1638,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850017
+    entropy: 12.850597
   - gridCell:
       possible:
       - id: 0
@@ -1560,7 +1666,15 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850102
+    entropy: 12.850183
+  - gridCell:
+      possible:
+      - id: 4
+        sequence:
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.849638
   - gridCell:
       possible:
       - id: 0
@@ -1588,7 +1702,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.85019
+    entropy: 12.849968
   - gridCell:
       possible:
       - id: 0
@@ -1616,7 +1730,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849949
+    entropy: 12.850105
   - gridCell:
       possible:
       - id: 0
@@ -1644,7 +1758,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849862
+    entropy: 12.85046
   - gridCell:
       possible:
       - id: 0
@@ -1672,7 +1786,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850291
+    entropy: 12.850309
   - gridCell:
       possible:
       - id: 0
@@ -1700,7 +1814,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849756
+    entropy: 12.849678
   - gridCell:
       possible:
       - id: 0
@@ -1728,7 +1842,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850611
+    entropy: 12.8501005
   - gridCell:
       possible:
       - id: 0
@@ -1756,7 +1870,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850035
+    entropy: 12.849787
   - gridCell:
       possible:
       - id: 0
@@ -1784,7 +1898,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850064
+    entropy: 12.849932
   - gridCell:
       possible:
       - id: 0
@@ -1812,119 +1926,7 @@ MonoBehaviour:
         - id: 0
           tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
         tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.849876
-  - gridCell:
-      possible:
-      - id: 0
-        sequence:
-        - id: 2
-          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-      - id: 1
-        sequence:
-        - id: 3
-          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-      - id: 2
-        sequence:
-        - id: 4
-          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-      - id: 3
-        sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-      - id: 4
-        sequence:
-        - id: 0
-          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850166
-  - gridCell:
-      possible:
-      - id: 0
-        sequence:
-        - id: 2
-          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-      - id: 1
-        sequence:
-        - id: 3
-          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-      - id: 2
-        sequence:
-        - id: 4
-          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-      - id: 3
-        sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-      - id: 4
-        sequence:
-        - id: 0
-          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850054
-  - gridCell:
-      possible:
-      - id: 0
-        sequence:
-        - id: 2
-          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-      - id: 1
-        sequence:
-        - id: 3
-          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-      - id: 2
-        sequence:
-        - id: 4
-          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-      - id: 3
-        sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-      - id: 4
-        sequence:
-        - id: 0
-          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850364
-  - gridCell:
-      possible:
-      - id: 0
-        sequence:
-        - id: 2
-          tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-        tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-      - id: 1
-        sequence:
-        - id: 3
-          tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-        tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-      - id: 2
-        sequence:
-        - id: 4
-          tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-        tile: {fileID: 11400000, guid: 4e132ee11090a0840bffda57efd89490, type: 2}
-      - id: 3
-        sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-      - id: 4
-        sequence:
-        - id: 0
-          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
-        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
-    entropy: 12.850509
+    entropy: 12.850518
 --- !u!114 &719086217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1961,16 +1963,16 @@ MonoBehaviour:
   minCell:
     gridCell:
       possible:
-      - id: 3
+      - id: 4
         sequence:
-        - id: 1
-          tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-        tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
-    entropy: 12.84966
-  entropy: 12.84966
-  i: 7
-  x: 2
-  y: 1
+        - id: 0
+          tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+        tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
+    entropy: 12.849638
+  entropy: 12.849638
+  i: 15
+  x: 0
+  y: 3
 --- !u!1 &747755738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,8 +2725,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 2, y: 1, z: 0}
     second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -2795,8 +2797,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 0, y: 3, z: 0}
     second:
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -3039,11 +3041,11 @@ MonoBehaviour:
   relativeFrequency: {fileID: 719086217}
   outputGrid: {fileID: 366885089}
   selection:
-    id: 3
+    id: 4
     sequence:
-    - id: 1
-      tile: {fileID: 11400000, guid: 3ecff1e36e80df84786eb104fa1d310d, type: 2}
-    tile: {fileID: 11400000, guid: 51d49126319cc6a4fb8c63a06c52a1db, type: 2}
+    - id: 0
+      tile: {fileID: 11400000, guid: 088ead4ea3ebefd41a7e43a276b827be, type: 2}
+    tile: {fileID: 11400000, guid: 10bfd8c44060a5041b9df8fcbf56fe96, type: 2}
 --- !u!4 &1882523444
 Transform:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Entropies : MonoBehaviour
+public class Entropies : MonoBehaviourWithPopulateButton
 {
     public RelativeFrequency relativeFrequency;
     public OutputGrid outputGrid;
@@ -17,7 +17,7 @@ public class Entropies : MonoBehaviour
         if (!outputGrid) outputGrid = FindObjectOfType<OutputGrid>();
     }
 
-    private void Populate()
+    public override void Populate()
     {
         all.Clear();
         foreach (var cell in outputGrid.grid)
@@ -45,19 +45,5 @@ public class Entropies : MonoBehaviour
     {
         public OutputGrid.Item gridCell;
         public float entropy;
-    }
-
-    [UnityEditor.CustomEditor(typeof(Entropies))]
-    public class EntropiesEditor : UnityEditor.Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-            if (GUILayout.Button("Populate"))
-                ((Entropies)target).Populate();
-            GUILayout.Space(UnityEditor.EditorGUIUtility.singleLineHeight);
-        }
     }
 }
