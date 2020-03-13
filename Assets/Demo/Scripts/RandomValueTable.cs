@@ -1,4 +1,4 @@
-﻿namespace ETdoFresh.PerlinNoise
+﻿namespace Demo.Scripts
 {
     public class RandomValueTable
     {
@@ -42,12 +42,12 @@
         public int Size { get; private set; }
         public int Max { get; private set; }
         public float Inverse { get; private set; }
-        public int Wrap;
+        public readonly int wrap;
         private int[] Table;
 
-        public int this[int i] => Table[i & Wrap] & Max;
-        public int this[int i, int j] => Table[(j + Table[i & Wrap]) & Wrap] & Max;
-        public int this[int i, int j, int k] => Table[(k + Table[(j + Table[i & Wrap]) & Wrap]) & Wrap] & Max;
+        public int this[int i] => Table[i & wrap] & Max;
+        public int this[int i, int j] => Table[(j + Table[i & wrap]) & wrap] & Max;
+        public int this[int i, int j, int k] => Table[(k + Table[(j + Table[i & wrap]) & wrap]) & wrap] & Max;
 
         public PermutationTable(int seed = 1234, int size = 1024, int max = 255)
         {
@@ -55,7 +55,7 @@
             Size = size;
             Max = max;
             Inverse = 1f / Max;
-            Wrap = Size - 1;
+            wrap = Size - 1;
             Table = new int[Size];
             var randomInt = new System.Random(Seed);
             for (int i = 0; i < Size; i++)

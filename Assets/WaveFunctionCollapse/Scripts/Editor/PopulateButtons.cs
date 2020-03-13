@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(MonoBehaviourWithPopulateButton), true)]
-public class PopulateButtons : Editor
+namespace WaveFunctionCollapse.Scripts.Editor
 {
-    public static readonly object[] NO_ARGS = new object[] { };
-
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(MonoBehaviourWithPopulateButton), true)]
+    public class PopulateButtons : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
+        private static readonly object[] NoArgs = new object[] { };
 
-        GUILayout.Space(EditorGUIUtility.singleLineHeight);
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
 
-        if (GUILayout.Button("Populate"))
-            target.GetType().GetMethod("Populate").Invoke(target, NO_ARGS);
+            GUILayout.Space(EditorGUIUtility.singleLineHeight);
 
-        GUILayout.Space(EditorGUIUtility.singleLineHeight);
+            if (GUILayout.Button("Populate"))
+                target.GetType().GetMethod("Populate")?.Invoke(target, NoArgs);
+
+            GUILayout.Space(EditorGUIUtility.singleLineHeight);
+        }
     }
 }

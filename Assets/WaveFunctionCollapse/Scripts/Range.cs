@@ -1,10 +1,13 @@
-﻿public static class Range
+﻿namespace WaveFunctionCollapse.Scripts
 {
-    public static float Map(float value, float minValue, float maxValue, float newMinValue, float newMaxValue)
+    public static class Range
     {
-        var range = maxValue - minValue;
-        var normalized = (value - minValue) / range;
-        var newRange = newMaxValue - newMinValue;
-        return normalized * newRange + newMinValue;
+        public static float Map(float value, float minValue, float maxValue, float newMinValue, float newMaxValue)
+        {
+            var range = maxValue - minValue;
+            var normalized = (value - minValue) / range;
+            var newRange = newMaxValue - newMinValue;
+            return normalized * newRange + newMinValue;
+        }
     }
 }

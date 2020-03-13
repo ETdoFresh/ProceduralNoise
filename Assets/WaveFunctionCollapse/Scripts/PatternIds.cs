@@ -4,27 +4,29 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PatternIds : MonoBehaviourWithPopulateButton
+namespace WaveFunctionCollapse.Scripts
 {
-    public int n = 1;
-    public Tilemap patternTilemap;
-    public TileIds tileIds;
-    public List<Item> all = new List<Item>();
-    public List<Item> grid = new List<Item>();
-
-    private void OnValidate()
+    public class PatternIds : MonoBehaviourWithPopulateButton
     {
-        if (!patternTilemap) patternTilemap = FindObjectOfType<Tilemap>();
-        if (!tileIds) tileIds = FindObjectOfType<TileIds>();
-    }
+        public int n = 1;
+        public Tilemap patternTilemap;
+        public TileIds tileIds;
+        public List<Item> all = new List<Item>();
+        public List<Item> grid = new List<Item>();
 
-    public override void Populate()
-    {
-        ClearTilemap(patternTilemap);
+        private void OnValidate()
+        {
+            if (!patternTilemap) patternTilemap = FindObjectOfType<Tilemap>();
+            if (!tileIds) tileIds = FindObjectOfType<TileIds>();
+        }
 
-        all.Clear();
-        var tiles = tileIds.all;
-        for (var y = 0; y < tileIds.height - (n - 1); y++)
+        public override void Populate()
+        {
+            ClearTilemap(patternTilemap);
+
+            all.Clear();
+            var tiles = tileIds.all;
+            for (var y = 0; y < tileIds.height - (n - 1); y++)
             for (var x = 0; x < tileIds.width - (n - 1); x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
@@ -32,8 +34,8 @@ public class PatternIds : MonoBehaviourWithPopulateButton
                     all.Add(new Item { id = all.Count, sequence = sequence, tile = tiles[all.Count].tile });
             }
 
-        grid.Clear();
-        for (var y = 0; y < tileIds.height - (n - 1); y++)
+            grid.Clear();
+            for (var y = 0; y < tileIds.height - (n - 1); y++)
             for (var x = 0; x < tileIds.width - (n - 1); x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
@@ -41,42 +43,43 @@ public class PatternIds : MonoBehaviourWithPopulateButton
                 grid.Add(item);
             }
 
-        var cell = patternTilemap.cellBounds;
-        var width = tileIds.width;
-        var height = tileIds.height;
-        cell.min = Vector3Int.zero;
-        cell.size = new Vector3Int(width - (n - 1), height - (n - 1), 1);
-        patternTilemap.size = cell.size;
+            var cell = patternTilemap.cellBounds;
+            var width = tileIds.width;
+            var height = tileIds.height;
+            cell.min = Vector3Int.zero;
+            cell.size = new Vector3Int(width - (n - 1), height - (n - 1), 1);
+            patternTilemap.size = cell.size;
 
-        for (int i = 0; i < grid.Count; i++)
-            patternTilemap.SetTile(new Vector3Int(i % cell.size.x, i / cell.size.x, 0), grid[i].tile);
-    }
+            for (int i = 0; i < grid.Count; i++)
+                patternTilemap.SetTile(new Vector3Int(i % cell.size.x, i / cell.size.x, 0), grid[i].tile);
+        }
 
-    private void ClearTilemap(Tilemap tilemap)
-    {
-        var min = tilemap.cellBounds.min;
-        var max = tilemap.cellBounds.max;
-        for (var y = min.y; y < max.y; y++)
+        private void ClearTilemap(Tilemap tilemap)
+        {
+            var cellBounds = tilemap.cellBounds;
+            var min = cellBounds.min;
+            var max = cellBounds.max;
+            for (var y = min.y; y < max.y; y++)
             for (var x = min.x; x < max.x; x++)
                 tilemap.SetTile(new Vector3Int(x, y, 0), null);
-    }
+        }
 
-    private List<TileIds.Item> GetNSequence(int x, int y)
-    {
-        var grid = tileIds.grid;
-        var width = tileIds.width;
-        var sequence = new List<TileIds.Item>();
-        for (int nY = 0; nY < n; nY++)
+        private List<TileIds.Item> GetNSequence(int x, int y)
+        {
+            var tileIdsGrid = tileIds.grid;
+            var sequence = new List<TileIds.Item>();
+            for (int nY = 0; nY < n; nY++)
             for (int nX = 0; nX < n; nX++)
-                sequence.Add(grid[x + nX, y + nY].value);
-        return sequence;
-    }
+                sequence.Add(tileIdsGrid[x + nX, y + nY].value);
+            return sequence;
+        }
 
-    [Serializable]
-    public class Item
-    {
-        public int id;
-        public List<TileIds.Item> sequence = new List<TileIds.Item>();
-        public TileBase tile;
+        [Serializable]
+        public class Item
+        {
+            public int id;
+            public List<TileIds.Item> sequence = new List<TileIds.Item>();
+            public TileBase tile;
+        }
     }
 }

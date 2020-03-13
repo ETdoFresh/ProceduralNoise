@@ -1,1 +1,4 @@
-﻿public interface ISystem { }
+﻿namespace SimpleRPGOverworld.Scripts
+{
+    public interface ISystem { }
+}

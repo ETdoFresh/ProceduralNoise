@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class NotGreatPauseSystem : MonoBehaviour, ISystem
+namespace SimpleRPGOverworld.Scripts
 {
-    void Update()
+    public class NotGreatPauseSystem : MonoBehaviour, ISystem
     {
-        if (Input.GetKeyDown(KeyCode.P))
-            if (Time.timeScale > 0)
-                Time.timeScale = 0;
-            else
-                Time.timeScale = 1;
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.P))
+                if (Time.timeScale > 0)
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = 1;
+        }
     }
 }

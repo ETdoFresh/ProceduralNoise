@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace ETdoFresh.PerlinNoise.Demo
+namespace Demo.Scripts
 {
     [RequireComponent(typeof(Tilemap))]
     public class RandomTiles : MonoBehaviour
@@ -13,8 +13,9 @@ namespace ETdoFresh.PerlinNoise.Demo
         private void OnEnable()
         {
             if (!tilemap) tilemap = GetComponent<Tilemap>();
-            width = tilemap.size.x;
-            height = tilemap.size.y;
+            var size = tilemap.size;
+            width = size.x;
+            height = size.y;
 
             for (int x = 0; x < tilemap.size.x; x++)
                 for (int y = 0; y < tilemap.size.y; y++)

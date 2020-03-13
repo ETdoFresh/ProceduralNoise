@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class Movement : MonoBehaviour, IComponentData
+namespace SimpleRPGOverworld.Scripts
 {
-    public float speed = 5;
+    public class Movement : MonoBehaviour, IComponentData
+    {
+        public float speed = 5;
+    }
 }
