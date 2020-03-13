@@ -12,7 +12,7 @@ namespace WaveFunctionCollapse.Scripts
         public Tilemap patternTilemap;
         public TileIds tileIds;
         public List<Item> all = new List<Item>();
-        public List<Item> grid = new List<Item>();
+        public Grid<Item> grid = new Grid<Item>();
 
         private void OnValidate()
         {
@@ -24,34 +24,36 @@ namespace WaveFunctionCollapse.Scripts
         {
             ClearTilemap(patternTilemap);
 
+            var width = tileIds.width - (n - 1);
+            var height = tileIds.height - (n - 1);
+
             all.Clear();
             var tiles = tileIds.all;
-            for (var y = 0; y < tileIds.height - (n - 1); y++)
-            for (var x = 0; x < tileIds.width - (n - 1); x++)
+            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
                 if (!all.Any(existing => sequence.SequenceEqual(existing.sequence)))
-                    all.Add(new Item { id = all.Count, sequence = sequence, tile = tiles[all.Count].tile });
+                    all.Add(new Item {id = all.Count, sequence = sequence, tile = tiles[all.Count].tile});
             }
 
-            grid.Clear();
-            for (var y = 0; y < tileIds.height - (n - 1); y++)
-            for (var x = 0; x < tileIds.width - (n - 1); x++)
+            grid.Reset(width, height);
+            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
                 var item = all.Where(i => sequence.SequenceEqual(i.sequence)).First();
-                grid.Add(item);
+                grid.SetValue(item, x, y);
             }
 
             var cell = patternTilemap.cellBounds;
-            var width = tileIds.width;
-            var height = tileIds.height;
             cell.min = Vector3Int.zero;
-            cell.size = new Vector3Int(width - (n - 1), height - (n - 1), 1);
+            cell.size = new Vector3Int(width, height, 1);
             patternTilemap.size = cell.size;
 
-            for (int i = 0; i < grid.Count; i++)
-                patternTilemap.SetTile(new Vector3Int(i % cell.size.x, i / cell.size.x, 0), grid[i].tile);
+            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
+                patternTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.tile);
         }
 
         private void ClearTilemap(Tilemap tilemap)

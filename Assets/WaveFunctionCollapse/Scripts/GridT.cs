@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WaveFunctionCollapse.Scripts
 {
-    public class Grid<T>
+    public class Grid<T> : IEnumerable<Cell<T>>
     {
         private List<Cell<T>> data = new List<Cell<T>>();
         public int width;
@@ -66,6 +69,9 @@ namespace WaveFunctionCollapse.Scripts
             while (value >= count) value -= count;
             return value;
         }
+
+        IEnumerator<Cell<T>> IEnumerable<Cell<T>>.GetEnumerator() => data.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => data.GetEnumerator();
     }
 
     public class Cell<T>
