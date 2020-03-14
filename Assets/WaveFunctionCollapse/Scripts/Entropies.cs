@@ -7,20 +7,20 @@ namespace WaveFunctionCollapse.Scripts
     public class Entropies : MonoBehaviourWithPopulateButton
     {
         public RelativeFrequency relativeFrequency;
-        public OutputGrid outputGrid;
+        public OutputGridPossibilities outputGridPossibilities;
         public List<Item> all = new List<Item>();
 
         private void OnValidate()
         {
             if (!relativeFrequency) relativeFrequency = FindObjectOfType<RelativeFrequency>();
-            if (!outputGrid) outputGrid = FindObjectOfType<OutputGrid>();
+            if (!outputGridPossibilities) outputGridPossibilities = FindObjectOfType<OutputGridPossibilities>();
         }
 
         public override void Populate()
         {
             all.Clear();
-            foreach (var cell in outputGrid.grid)
-                all.Add(new Item { gridCell = cell, entropy = ComputeEntropy(cell.possible) });
+            foreach (var cell in outputGridPossibilities.grid)
+                all.Add(new Item { gridCell = cell, entropy = ComputeEntropy(cell.value.possible) });
         }
 
         private float ComputeEntropy(List<PatternIds.Item> possible)
@@ -42,7 +42,7 @@ namespace WaveFunctionCollapse.Scripts
         [Serializable]
         public class Item
         {
-            public OutputGrid.Item gridCell;
+            public OutputGridPossibilities.OutputCell gridCell;
             public float entropy;
         }
     }

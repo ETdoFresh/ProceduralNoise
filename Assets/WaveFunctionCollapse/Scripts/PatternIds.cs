@@ -85,6 +85,15 @@ namespace WaveFunctionCollapse.Scripts
             public int id;
             public List<TileIds.Item> sequence = new List<TileIds.Item>();
             public TileBase tile;
+
+            public override bool Equals(object obj)
+            {
+                if (obj is Item other) return id == other.id;
+                else return false;
+            }
+
+            public static bool operator ==(Item lhs, Item rhs) => lhs.Equals(rhs);
+            public static bool operator !=(Item lhs, Item rhs) => !(lhs == rhs);
         }
     }
 }

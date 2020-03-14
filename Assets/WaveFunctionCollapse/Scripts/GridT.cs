@@ -33,6 +33,8 @@ namespace WaveFunctionCollapse.Scripts
             {
                 var newCell = Activator.CreateInstance<TCell>();
                 newCell.name = $"Cell ({x},{y})";
+                newCell.x = x;
+                newCell.y = y;
                 data.Add(newCell);
             }
 
@@ -45,6 +47,12 @@ namespace WaveFunctionCollapse.Scripts
                 this[x, y].left = this[WrapIndex(x - 1, newWidth), y];
                 this[x, y].right = this[WrapIndex(x + 1, newWidth), y];
             }
+        }
+
+        public void Clear()
+        {
+            foreach (var cell in data)
+                cell.value = default;
         }
 
         public void SetValue(TValue value, int i)
@@ -84,6 +92,8 @@ namespace WaveFunctionCollapse.Scripts
     public class Cell<TValue, TCell> where TCell : Cell<TValue, TCell>
     {
         [HideInInspector] public string name;
+        [HideInInspector] public int x;
+        [HideInInspector] public int y;
         public TValue value;
         [NonSerialized] public Grid<TValue, TCell> grid;
         public TCell left;

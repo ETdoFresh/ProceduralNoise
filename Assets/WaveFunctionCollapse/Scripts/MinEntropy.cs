@@ -5,7 +5,7 @@ namespace WaveFunctionCollapse.Scripts
 {
     public class MinEntropy : MonoBehaviourWithPopulateButton
     {
-        public OutputGrid outputGrid;
+        public OutputGridPossibilities outputGridPossibilities;
         public Entropies entropies;
         public Entropies.Item minCell;
         public float entropy;
@@ -16,17 +16,17 @@ namespace WaveFunctionCollapse.Scripts
 
         private void OnValidate()
         {
-            if (!outputGrid) outputGrid = FindObjectOfType<OutputGrid>();
+            if (!outputGridPossibilities) outputGridPossibilities = FindObjectOfType<OutputGridPossibilities>();
             if (!entropies) entropies = FindObjectOfType<Entropies>();
         }
 
         public override void Populate()
         {
-            entropy = entropies.all.Where(e => e.gridCell.possible.Count > 1).Min(e => e.entropy);
+            entropy = entropies.all.Where(e => e.gridCell.value.possible.Count > 1).Min(e => e.entropy);
             minCell = entropies.all.First(e => Math.Abs(e.entropy - entropy) < TOLERANCE);
             i = entropies.all.IndexOf(minCell);
-            x = i % outputGrid.width;
-            y = i / outputGrid.height;
+            x = i % outputGridPossibilities.width;
+            y = i / outputGridPossibilities.height;
         }
     }
 }
