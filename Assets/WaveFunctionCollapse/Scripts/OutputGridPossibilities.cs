@@ -44,6 +44,14 @@ namespace WaveFunctionCollapse.Scripts
                     patternIds.tileIds.all[grid[x, y].value.possible.Count].tile);
         }
 
+        public void ShowPatterns()
+        {
+            ClearTilemap(outputTilemap);
+            for (var y = 0; y < grid.height; y++)
+            for (var x = 0; x < grid.width; x++)
+                outputTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.possible[0].tile);
+        }
+
         private void ClearTilemap(Tilemap tilemap)
         {
             var cellBounds = tilemap.cellBounds;
