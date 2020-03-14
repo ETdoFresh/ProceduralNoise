@@ -10,9 +10,7 @@ namespace WaveFunctionCollapse.Scripts
     {
         public Tilemap inputTilemap;
         public List<Item> all = new List<Item>();
-        public Grid<Item> grid = new Grid<Item>();
-        public int width;
-        public int height;
+        public TileGrid grid = new TileGrid();
 
         private void OnValidate()
         {
@@ -28,10 +26,11 @@ namespace WaveFunctionCollapse.Scripts
                 if (all.All(existing => existing.tile != tile))
                     all.Add(new Item { id = all.Count, tile = tile });
 
-            grid.Reset(width, height);
+            var size = inputTilemap.cellBounds.size;
+            grid.Reset(size.x, size.y);
             var min = inputTilemap.cellBounds.min;
-            for (var y = 0; y < height; y++)
-            for (var x = 0; x < width; x++)
+            for (var y = 0; y < grid.height; y++)
+            for (var x = 0; x < grid.width; x++)
             {
                 var tile = inputTilemap.GetTile(min + new Vector3Int(x, y, 0));
                 var item = all.First(i => i.tile == tile);
@@ -41,9 +40,6 @@ namespace WaveFunctionCollapse.Scripts
 
         private void RefreshCellBounds()
         {
-            var size = inputTilemap.size;
-            width = size.x;
-            height = size.y;
             var notSet = new Vector3Int(-1, -1, -1);
             var topLeft = notSet;
             var bottomRight = notSet;
@@ -59,6 +55,7 @@ namespace WaveFunctionCollapse.Scripts
                         topLeft = new Vector3Int(x, y, 0);
                         bottomRight = new Vector3Int(x, y, 1);
                     }
+
                     if (bottomRight.x < x + 1)
                         bottomRight.x = x + 1;
                     if (bottomRight.y < y + 1)
@@ -68,10 +65,11 @@ namespace WaveFunctionCollapse.Scripts
             cell.min = topLeft;
             cell.max = bottomRight;
             inputTilemap.size = cell.size;
-            width = cell.size.x;
-            height = cell.size.y;
         }
-
+        
+        [Serializable] public class TileGrid : Grid<Item, TileCell> { }
+        [Serializable] public class TileCell : Cell<Item, TileCell> { }
+        
         [Serializable]
         public class Item
         {

@@ -2,18 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace WaveFunctionCollapse.Scripts
 {
-    public class Grid<T> : IEnumerable<Cell<T>>
+    public class Grid<TValue, TCell> : IEnumerable<TCell> where TCell : Cell<TValue, TCell>
     {
-        private List<Cell<T>> data = new List<Cell<T>>();
+        public List<TCell> data = new List<TCell>();
         public int width;
         public int height;
 
         public int Count => width * height;
-        public Cell<T> this[int i] => data[i];
-        public Cell<T> this[int x, int y] => data[x + y * width];
+        public TCell this[int i] => data[i];
+        public TCell this[int x, int y] => data[x + y * width];
 
         public Grid() { }
 
@@ -27,11 +28,16 @@ namespace WaveFunctionCollapse.Scripts
             data.Clear();
             width = newWidth;
             height = newHeight;
-            for (var i = 0; i < Count; i++)
-                data.Add(new Cell<T>());
+            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
+            {
+                var newCell = Activator.CreateInstance<TCell>();
+                newCell.name = $"Cell ({x},{y})";
+                data.Add(newCell);
+            }
 
-            for (var y = 0; y < newHeight; y++)
-            for (var x = 0; x < newWidth; x++)
+            for (var y = 0; y < height; y++)
+            for (var x = 0; x < width; x++)
             {
                 this[x, y].grid = this;
                 this[x, y].up = this[x, WrapIndex(y - 1, newHeight)];
@@ -41,7 +47,7 @@ namespace WaveFunctionCollapse.Scripts
             }
         }
 
-        public void SetValue(T value, int i)
+        public void SetValue(TValue value, int i)
         {
             this[i].value = value;
         }
@@ -51,7 +57,7 @@ namespace WaveFunctionCollapse.Scripts
             this[i].value = default;
         }
 
-        public void SetValue(T value, int x, int y)
+        public void SetValue(TValue value, int x, int y)
         {
             this[x, y].value = value;
         }
@@ -70,17 +76,19 @@ namespace WaveFunctionCollapse.Scripts
             return value;
         }
 
-        IEnumerator<Cell<T>> IEnumerable<Cell<T>>.GetEnumerator() => data.GetEnumerator();
+        IEnumerator<TCell> IEnumerable<TCell>.GetEnumerator() => data.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => data.GetEnumerator();
     }
 
-    public class Cell<T>
+    [Serializable]
+    public class Cell<TValue, TCell> where TCell : Cell<TValue, TCell>
     {
-        public T value;
-        public Grid<T> grid;
-        public Cell<T> left;
-        public Cell<T> right;
-        public Cell<T> down;
-        public Cell<T> up;
+        [HideInInspector] public string name;
+        public TValue value;
+        [NonSerialized] public Grid<TValue, TCell> grid;
+        public TCell left;
+        public TCell right;
+        public TCell down;
+        public TCell up;
     }
 }

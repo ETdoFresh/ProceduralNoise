@@ -12,7 +12,7 @@ namespace WaveFunctionCollapse.Scripts
         public Tilemap patternTilemap;
         public TileIds tileIds;
         public List<Item> all = new List<Item>();
-        public Grid<Item> grid = new Grid<Item>();
+        public PatternGrid grid = new PatternGrid();
 
         private void OnValidate()
         {
@@ -24,8 +24,8 @@ namespace WaveFunctionCollapse.Scripts
         {
             ClearTilemap(patternTilemap);
 
-            var width = tileIds.width - (n - 1);
-            var height = tileIds.height - (n - 1);
+            var width = tileIds.grid.width - (n - 1);
+            var height = tileIds.grid.height - (n - 1);
 
             all.Clear();
             var tiles = tileIds.all;
@@ -76,6 +76,9 @@ namespace WaveFunctionCollapse.Scripts
             return sequence;
         }
 
+        [Serializable] public class PatternGrid : Grid<Item, PatternCell> { }
+        [Serializable] public class PatternCell : Cell<Item, PatternCell> { }
+        
         [Serializable]
         public class Item
         {
