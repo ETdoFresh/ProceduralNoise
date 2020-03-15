@@ -1,11 +1,14 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace WaveFunctionCollapse.Scripts {
+namespace WaveFunctionCollapse.Scripts
+{
     public class CollapseNeighbors : MonoBehaviourWithPopulateButton
     {
         public GatherRules gatherRules;
         public MinEntropy minEntropy;
         public OutputGridPossibilities outputGrid;
+
         private void OnValidate()
         {
             if (!gatherRules) gatherRules = FindObjectOfType<GatherRules>();
@@ -15,29 +18,40 @@ namespace WaveFunctionCollapse.Scripts {
 
         public override void Populate()
         {
-            var cell = minEntropy.minCell.gridCell;
-        
-            var combinedRule = new GatherRules.Rule();
-            foreach (var possibiilty in cell.value.possible)
+            var queue = new Queue<OutputGridPossibilities.OutputCell>();
+            var visited = new List<OutputGridPossibilities.OutputCell>();
+            queue.Enqueue(minEntropy.minCell.gridCell);
+
+            while (queue.Count > 0)
             {
-                var rule = gatherRules.rules.First(r => r.pattern == possibiilty);
-                combinedRule.up.AddRange(rule.up.Except(combinedRule.up));
-                combinedRule.down.AddRange(rule.down.Except(combinedRule.down));
-                combinedRule.left.AddRange(rule.left.Except(combinedRule.left));
-                combinedRule.right.AddRange(rule.right.Except(combinedRule.right));
+                var cell = queue.Dequeue();
+                visited.Add(cell);
+
+                var combinedRule = new GatherRules.Rule();
+                foreach (var possibility in cell.value.possible)
+                {
+                    var rule = gatherRules.rules.First(r => r.pattern == possibility);
+                    foreach (var neighbor in rule.possibilities.Keys)
+                        combinedRule[neighbor].AddRange(rule[neighbor].Except(combinedRule[neighbor]));
+                }
+
+                foreach (var neighbor in combinedRule.possibilities.Keys)
+                {
+                    var previousCount = cell[neighbor].value.possible.Count;
+                    var tempList = new List<PatternIds.Item>(cell[neighbor].value.possible);
+                    cell[neighbor].value.possible.RemoveAll(item => !combinedRule[neighbor].Contains(item));
+                    var count = cell[neighbor].value.possible.Count;
+                    if (count != previousCount)
+                        if (!visited.Contains(cell[neighbor]))
+                            queue.Enqueue(cell[neighbor]);
+                    if (count == 0)
+                        queue.Clear();
+                }
             }
 
-            cell.up.value.possible.RemoveAll(item => !combinedRule.up.Contains(item));
-            cell.down.value.possible.RemoveAll(item => !combinedRule.down.Contains(item));
-            cell.left.value.possible.RemoveAll(item => !combinedRule.left.Contains(item));
-            cell.right.value.possible.RemoveAll(item => !combinedRule.right.Contains(item));
-            
-            outputGrid.grid.SetValue(cell.value, cell.x, cell.y);
-            outputGrid.grid.SetValue(cell.up.value, cell.up.x, cell.up.y);
-            outputGrid.grid.SetValue(cell.down.value, cell.down.x, cell.down.y);
-            outputGrid.grid.SetValue(cell.left.value, cell.left.x, cell.left.y);
-            outputGrid.grid.SetValue(cell.right.value, cell.right.x, cell.right.y);
-        
+            foreach (var cell in visited)
+                outputGrid.grid.SetValue(cell.value, cell.x, cell.y);
+
             outputGrid.RefreshTiles();
         }
     }

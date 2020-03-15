@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace WaveFunctionCollapse.Scripts
 {
@@ -42,10 +41,10 @@ namespace WaveFunctionCollapse.Scripts
             for (var x = 0; x < width; x++)
             {
                 this[x, y].grid = this;
-                this[x, y].up = this[x, WrapIndex(y - 1, newHeight)];
-                this[x, y].down = this[x, WrapIndex(y + 1, newHeight)];
-                this[x, y].left = this[WrapIndex(x - 1, newWidth), y];
-                this[x, y].right = this[WrapIndex(x + 1, newWidth), y];
+                this[x, y][Neighbor.Up] = this[x, WrapIndex(y - 1, newHeight)];
+                this[x, y][Neighbor.Down] = this[x, WrapIndex(y + 1, newHeight)];
+                this[x, y][Neighbor.Left] = this[WrapIndex(x - 1, newWidth), y];
+                this[x, y][Neighbor.Right] = this[WrapIndex(x + 1, newWidth), y];
             }
         }
 
@@ -86,19 +85,5 @@ namespace WaveFunctionCollapse.Scripts
 
         IEnumerator<TCell> IEnumerable<TCell>.GetEnumerator() => data.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => data.GetEnumerator();
-    }
-
-    [Serializable]
-    public class Cell<TValue, TCell> where TCell : Cell<TValue, TCell>
-    {
-        [HideInInspector] public string name;
-        [HideInInspector] public int x;
-        [HideInInspector] public int y;
-        public TValue value;
-        [NonSerialized] public Grid<TValue, TCell> grid;
-        public TCell left;
-        public TCell right;
-        public TCell down;
-        public TCell up;
     }
 }

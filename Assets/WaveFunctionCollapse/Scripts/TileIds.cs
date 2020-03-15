@@ -21,10 +21,10 @@ namespace WaveFunctionCollapse.Scripts
         {
             RefreshCellBounds();
 
-            all.Clear();
-            foreach (var tile in inputTilemap.GetTilesBlock(inputTilemap.cellBounds).OrderBy(t => t.name))
-                if (all.All(existing => existing.tile != tile))
-                    all.Add(new Item { id = all.Count, tile = tile });
+            // all.Clear();
+            // foreach (var tile in inputTilemap.GetTilesBlock(inputTilemap.cellBounds).OrderBy(t => t.name))
+            //     if (all.All(existing => existing.tile != tile))
+            //         all.Add(new Item { id = all.Count, tile = tile });
 
             var size = inputTilemap.cellBounds.size;
             grid.Reset(size.x, size.y);
