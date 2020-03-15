@@ -40,20 +40,6 @@ namespace WaveFunctionCollapse.Scripts {
                     collapseCell.Populate();
                     collapseNeighbors.Populate();
                 }
-
-                var hasCollision = false;
-                foreach(var cell in outputGrid.grid)
-                    if (cell.value.possible.Count == 0)
-                    {
-                        hasCollision = true;
-                        break;
-                    }
-
-                if (!hasCollision)
-                {
-                    outputGrid.ShowPatterns();
-                    break;
-                }
             }
         }
     }

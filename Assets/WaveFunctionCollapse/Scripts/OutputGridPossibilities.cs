@@ -49,7 +49,17 @@ namespace WaveFunctionCollapse.Scripts
             ClearTilemap(outputTilemap);
             for (var y = 0; y < grid.height; y++)
             for (var x = 0; x < grid.width; x++)
-                outputTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.possible[0].tile);
+                if (grid[x, y].value.possible.Count > 0)
+                    outputTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.possible[0].tile);
+        }
+
+        public void ShowTiles()
+        {
+            ClearTilemap(outputTilemap);
+            for (var y = 0; y < grid.height; y++)
+            for (var x = 0; x < grid.width; x++)
+                if (grid[x, y].value.possible.Count > 0)
+                    outputTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.possible[0].sequence[0].tile);
         }
 
         private void ClearTilemap(Tilemap tilemap)
@@ -63,10 +73,14 @@ namespace WaveFunctionCollapse.Scripts
         }
 
         [Serializable]
-        public class OutputGrid : Grid<Item, OutputCell> { }
+        public class OutputGrid : Grid<Item, OutputCell>
+        {
+        }
 
         [Serializable]
-        public class OutputCell : Cell<Item, OutputCell> { }
+        public class OutputCell : Cell<Item, OutputCell>
+        {
+        }
 
         [Serializable]
         public class Item
