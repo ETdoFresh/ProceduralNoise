@@ -32,16 +32,16 @@ namespace WaveFunctionCollapse.Scripts
                 ;
             }
 
-            RefreshTiles();
+            RefreshCounts();
         }
 
-        public void RefreshTiles()
+        public void RefreshCounts()
         {
             ClearTilemap(outputTilemap);
             for (var y = 0; y < grid.height; y++)
             for (var x = 0; x < grid.width; x++)
                 outputTilemap.SetTile(new Vector3Int(x, y, 0),
-                    patternIds.tileIds.all[grid[x, y].value.possible.Count].tile);
+                    patternIds.tiles[grid[x, y].value.possible.Count]);
         }
 
         public void ShowPatterns()

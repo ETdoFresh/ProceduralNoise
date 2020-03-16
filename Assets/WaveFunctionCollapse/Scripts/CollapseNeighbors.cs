@@ -52,7 +52,7 @@ namespace WaveFunctionCollapse.Scripts
             foreach (var cell in visited)
                 outputGrid.grid.SetValue(cell.value, cell.x, cell.y);
 
-            outputGrid.RefreshTiles();
+            outputGrid.RefreshCounts();
         }
     }
 }

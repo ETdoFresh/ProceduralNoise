@@ -13,6 +13,7 @@ namespace WaveFunctionCollapse.Scripts
         public TileIds tileIds;
         public List<Item> all = new List<Item>();
         public PatternGrid grid = new PatternGrid();
+        public List<TileBase> tiles = new List<TileBase>();
 
         private void OnValidate()
         {
@@ -28,13 +29,12 @@ namespace WaveFunctionCollapse.Scripts
             var height = tileIds.grid.height - (n - 1);
 
             all.Clear();
-            var tiles = tileIds.all;
             for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
             {
                 List<TileIds.Item> sequence = GetNSequence(x, y);
                 if (!all.Any(existing => sequence.SequenceEqual(existing.sequence)))
-                    all.Add(new Item {id = all.Count, sequence = sequence, tile = tiles[all.Count].tile});
+                    all.Add(new Item {id = all.Count, sequence = sequence, tile = tiles[all.Count]});
             }
 
             grid.Reset(width, height);
@@ -53,7 +53,7 @@ namespace WaveFunctionCollapse.Scripts
 
             for (var y = 0; y < height; y++)
             for (var x = 0; x < width; x++)
-                patternTilemap.SetTile(new Vector3Int(x, y, 0), grid[x, y].value.tile);
+                patternTilemap.SetTile(new Vector3Int(x, y, 0), tiles[grid[x, y].value.id]);
         }
 
         private void ClearTilemap(Tilemap tilemap)

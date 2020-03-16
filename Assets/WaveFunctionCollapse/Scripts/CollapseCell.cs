@@ -40,7 +40,7 @@ namespace WaveFunctionCollapse.Scripts
 
             cell.gridCell.value.possible.Clear();
             cell.gridCell.value.possible.Add(selection);
-            outputGridPossibilities.RefreshTiles();
+            outputGridPossibilities.RefreshCounts();
         }
     }
 }
